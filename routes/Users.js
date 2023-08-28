@@ -13,7 +13,7 @@ router
    *       200:
    *       description: Success.
    */
-  .get('/', controller.getUser)
+  .get('/', controller.getMe)
   /**
    * @openapi
    * /users:
@@ -72,13 +72,13 @@ router
   /**
    * @openapi
    * /users:
-   *   put:
-   *     description: Update user
+   *   post:
+   *     description: Login user with username and password.
    *     responses:
    *       200:
    *         description: Success.
    */
-  .put('/', controller.put)
+  .post('/login', controller.login)
   /**
    * @swagger
    * /users:

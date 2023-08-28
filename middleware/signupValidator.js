@@ -5,13 +5,17 @@ export const rules = [
   check('username')
     .isLength({ min: 5 })
     .withMessage('Username must be at least 5 characters.'),
+
   check('email').isEmail().withMessage('Email is invalid.').normalizeEmail(),
+
   check('firstname')
     .isLength({ min: 2 })
     .withMessage('Firstname must be at least 2 characters.'),
+
   check('lastname')
     .isLength({ min: 2 })
     .withMessage('Lastname must be at least 2 characters.'),
+
   check('DOB')
     .custom((value) => {
       if (moment(value, 'MM-DD-YYYY', true).isValid()) {
@@ -19,6 +23,7 @@ export const rules = [
       }
     })
     .withMessage('Invalid format.'),
+
   check('password')
     .isLength({ min: 8 })
     .withMessage('Password must be at least 8 characters.')
@@ -30,6 +35,7 @@ export const rules = [
     .withMessage(
       'Password must contain at least one number and one special character.'
     ),
+
   check('confirmPassword').custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error('Passwords do not match.')
