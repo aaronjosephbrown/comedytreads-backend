@@ -24,8 +24,10 @@ app
 
 setupSwagger(app)
 
-// app.listen(PORT, () => {
-//   console.log(`Server started on ${PORT}`.info.bold)
-// })
+if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'prod') {
+  app.listen(PORT, () => {
+    console.log(`Server started in ${process.env.NODE_ENV.underline.yellow} domain on ${PORT}`.info)
+  })
+}
 
 export default app
