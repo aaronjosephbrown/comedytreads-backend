@@ -6,10 +6,16 @@ import generateToken from '../utils/generateToken.js'
 
 const controller = {
   getMe: (req, res) => {
-    res.json({
-      users: ['aaron', 'brian', 'cathy'],
+    const user = {
+      username: req.user.username,
+      email: req.user.email,
+      id: req.user._id,
+    }
+    res.status(200).json({
+      user,
     })
   },
+
   createUser: [
     ...rules,
     validate,
@@ -34,22 +40,24 @@ const controller = {
       if (user) {
         return res.status(201).json({
           username: user.username,
-          token: generateToken(user._id)
+          token: generateToken(user._id),
         })
       }
     }),
   ],
+
   login: asyncHandler(async (req, res) => {
     const { username, password } = req.body
     const user = await User.findOne({ username })
     if (user && (await bcrypt.compare(password, user.password))) {
       return res.status(200).json({
         username: user.username,
-        token: generateToken(user._id)
+        token: generateToken(user._id),
       })
     }
     return res.status(401).json({ errors: [{ msg: 'Invalid credentials.' }] })
   }),
+
   delete: (req, res) => {
     res.send('User deleted.')
   },

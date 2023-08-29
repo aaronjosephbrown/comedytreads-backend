@@ -1,5 +1,6 @@
 import express from 'express'
 import controller from '../controllers/userController.js'
+import { protect } from '../middleware/auth.js'
 
 const router = express.Router()
 
@@ -13,7 +14,7 @@ router
    *       200:
    *       description: Success.
    */
-  .get('/', controller.getMe)
+  .get('/me', protect, controller.getMe)
   /**
    * @openapi
    * /users:

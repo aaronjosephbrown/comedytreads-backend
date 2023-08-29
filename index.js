@@ -22,8 +22,7 @@ app
   .use('/api/users', usersRouter)
   .use('/api/threads', threadsRouter)
   .use('/api/comments', commentsRouter)
-  .use('/api/me', usersRouter)
-
+  
 setupSwagger(app)
 
 if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'prod') {
