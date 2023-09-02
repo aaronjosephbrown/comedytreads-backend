@@ -58,6 +58,12 @@ const controller = {
     return res.status(401).json({ errors: [{ msg: 'Invalid credentials.' }] })
   }),
 
+  uploadAvatar: asyncHandler(async (req, res) => {
+    console.log(req.body)
+    console.log(req.file)
+    res.send('Upload avatar.')
+  }),
+
   delete: (req, res) => {
     res.send('User deleted.')
   },

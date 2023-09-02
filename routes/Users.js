@@ -1,8 +1,21 @@
 import express from 'express'
 import controller from '../controllers/userController.js'
 import { protect } from '../middleware/auth.js'
+import multer from 'multer'
+import { S3Client } from "@aws-sdk/client-s3"
 
 const router = express.Router()
+
+const storage = multer.memoryStorage()
+const upload = multer({ storage })
+
+const buckeName = process.env.BUCKET_NAME
+const bucketRegion = process.env.BUCKET_REGION
+const accessKey = process.env.ACCESS_KEY
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
+
+
+
 
 router
   /**
@@ -89,6 +102,7 @@ router
    *       200:
    *         description: Success.
    */
+  .post('/avatar', protect, upload.single('avatar'), controller.uploadAvatar)
   .delete('/', controller.delete)
 
 export default router

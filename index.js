@@ -22,12 +22,15 @@ app
   .use('/api/users', usersRouter)
   .use('/api/threads', threadsRouter)
   .use('/api/comments', commentsRouter)
-  
+
 setupSwagger(app)
 
 if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'prod') {
   app.listen(PORT, () => {
-    console.log(`Server started in ${process.env.NODE_ENV.underline.yellow} domain on ${PORT}`.info)
+    console.log(
+      `Server started in ${process.env.NODE_ENV.underline.yellow} domain on ${PORT}`
+        .info
+    )
   })
 }
 

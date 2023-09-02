@@ -28,6 +28,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please enter your password'],
     },
+    profilePicture: {
+      type: String,
+      default: '',
+    },
   },
   {
     timestamps: true,
