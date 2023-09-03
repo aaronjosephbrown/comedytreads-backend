@@ -28,7 +28,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please enter your password'],
     },
-    profilePicture: {
+    avatar: {
       type: String,
       default: '',
     },
