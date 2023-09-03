@@ -8,6 +8,8 @@ import s3Bucket from '../configs/s3.js'
 import sharp from 'sharp'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
+const { s3, PutObjectCommand, buckeName, GetObjectCommand } = s3Bucket
+
 const controller = {
   getMe: (req, res) => {
     const user = {
@@ -54,8 +56,19 @@ const controller = {
     const { username, password } = req.body
     const user = await User.findOne({ username })
     if (user && (await bcrypt.compare(password, user.password))) {
+
+      const avatarUrl = await getSignedUrl(
+        s3,
+        new GetObjectCommand({
+          Bucket: buckeName,
+          Key: user.avatar,
+        }),
+        { expiresIn: 7200 }
+      )
+
       return res.status(200).json({
         username: user.username,
+        avatar: avatarUrl,
         token: generateToken(user._id),
       })
     }
@@ -63,7 +76,7 @@ const controller = {
   }),
 
   uploadAvatar: asyncHandler(async (req, res) => {
-    const { s3, PutObjectCommand, buckeName, GetObjectCommand } = s3Bucket
+    
 
     const buffer = await sharp(req.file.buffer).resize(180, 180).toBuffer()
     const imageName = randomImageName()
@@ -77,6 +90,8 @@ const controller = {
     const commandResponse = await s3.send(command)
 
     if (commandResponse.$metadata.httpStatusCode === 200) {
+
+      
       await User.findOneAndUpdate(
         { _id: req.user.id },
         { avatar: imageName },
