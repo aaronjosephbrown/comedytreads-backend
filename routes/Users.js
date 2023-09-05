@@ -19,7 +19,7 @@ router
    *       200:
    *       description: Success.
    */
-  .get('/me', protect, controller.getMe)
+  .get('/me', protect, controller.getUser)
   /**
    * @openapi
    * /users:
@@ -84,7 +84,7 @@ router
    *       200:
    *         description: Success.
    */
-  .post('/login', controller.login)
+  .post('/login', controller.loginUser)
   /**
    * @swagger
    * /users:
@@ -94,7 +94,7 @@ router
    *       200:
    *         description: Success.
    */
-  .post('/avatar', protect, upload.single('avatar'), controller.uploadAvatar)
-  .delete('/', controller.delete)
+  .post('/avatar', protect, upload.single('avatar'), controller.updateAvatar)
+  .delete('/', controller.deleteUser)
 
 export default router

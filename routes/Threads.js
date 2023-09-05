@@ -1,5 +1,6 @@
 import express from 'express'
 import controller from '../controllers/threadController.js'
+import { protect } from '../middleware/auth.js'
 
 const router = express.Router()
 
@@ -13,7 +14,7 @@ router
    *       200:
    *         description: A JSON array of threads
    */
-  .get('/', controller.get)
+  .get('/user', protect, controller.getThreadsByUser)
   /**
    * @swagger
    * /threads:
@@ -23,7 +24,7 @@ router
    *       200:
    *         description: Success.
    */
-  .post('/', controller.post)
+  .post('/', protect, controller.createThread)
   /**
    * @swagger
    * /threads:
@@ -33,7 +34,7 @@ router
    *       200:
    *         description: Thread updated.
    */
-  .put('/', controller.put)
+  .put('/', controller.updateThread)
   /**
    * @swagger
    * /threads:
@@ -43,6 +44,6 @@ router
    *       200:
    *         description: Thread deleted.
    */
-  .delete('/', controller.delete)
+  .delete('/', controller.deleteThread)
 
 export default router
