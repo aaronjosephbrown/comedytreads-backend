@@ -3,6 +3,7 @@ import sharp from 'sharp'
 import randomImageName from '../../utils/randomImageName.js'
 import s3Bucket from '../../configs/s3.js'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
+import User from '../../models/userModel.js'
 
 const updateAvatar = asyncHandler(async (req, res) => {
   const { s3, PutObjectCommand, buckeName, GetObjectCommand } = s3Bucket

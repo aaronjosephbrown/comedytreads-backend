@@ -1,9 +1,8 @@
 import Thread from '../../models/threadModel.js'
 
 const getThreadsByUser = async (req, res) => {
-  const user = req.user
   try {
-    const thread = await Thread.find({ user }).select('-user')
+    const thread = await Thread.find({ user: req.user }).select('-user')
     if (thread) {
       res.json(thread)
     } else {
@@ -11,7 +10,6 @@ const getThreadsByUser = async (req, res) => {
       throw new Error('Thread not found')
     }
   } catch (error) {
-    console.error(error)
     res.status(500).json({ message: 'Server Error' })
   }
 }
