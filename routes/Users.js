@@ -96,5 +96,6 @@ router
    */
   .post('/avatar', protect, upload.single('avatar'), controller.updateAvatar)
   .delete('/', controller.deleteUser)
+  .get('/all', protect, controller.getAllUsers)
 
 export default router

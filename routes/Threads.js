@@ -45,5 +45,6 @@ router
    *         description: Thread deleted.
    */
   .delete('/', controller.deleteThread)
+  .get('/all', protect, controller.getThreadsByAllUsers)
 
 export default router
