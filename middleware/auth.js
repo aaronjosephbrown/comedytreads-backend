@@ -3,6 +3,7 @@ import decodeToken from '../utils/decodeToken.js'
 import User from '../models/userModel.js'
 
 const protect = asyncHandler(async (req, res, next) => {
+  
   let user
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {

@@ -1,7 +1,7 @@
 import Thread from '../../models/threadModel.js';
 
 const deleteThread = (req, res) => {
-  Thread.findByIdAndDelete(req.body.threadId)
+  Thread.findByIdAndDelete(req.params.threadId)
     .then((result) => {
       if (!result) {
         return res.status(404).json('Thread not found');
