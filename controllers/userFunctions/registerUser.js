@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 import User from '../../models/userModel.js'
 import generateToken from '../../utils/generateToken.js'
 
-const createUser = [
+const registerUser = [
   ...rules,
   validate,
   asyncHandler(async (req, res) => {
@@ -38,4 +38,4 @@ const createUser = [
   }),
 ]
 
-export default createUser
+export default registerUser

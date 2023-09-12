@@ -74,7 +74,7 @@ router
    *       500:
    *        description: Internal server error.
    */
-  .post('/', controller.createUser)
+  .post('/register', controller.registerUser)
   /**
    * @openapi
    * /users:

@@ -1,12 +1,12 @@
 import getUser from './userFunctions/getUser.js'
-import createUser from './userFunctions/createUser.js'
+import registerUser from './userFunctions/registerUser.js'
 import loginUser from './userFunctions/loginUser.js'
 import updateAvatar from './userFunctions/updateAvatar.js'
 import deleteUser from './userFunctions/deleteUser.js'
 import getAllUsers from './userFunctions/getAllUsers.js'
 
 const controller = {
-  createUser,
+  registerUser,
   loginUser,
   getUser,
   getAllUsers,
