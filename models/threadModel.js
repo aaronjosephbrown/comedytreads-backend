@@ -12,10 +12,17 @@ const threadSchema = mongoose.Schema(
       required: [true, 'Please enter your thread'],
     },
 
-    likes: {
+    likesCount: {
       type: Number,
       default: 0,
     },
+
+    likedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
 
     comments: [
       {

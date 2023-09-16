@@ -46,5 +46,7 @@ router
    */
   .get('/all', protect, controller.getThreadsByAllUsers)
   .delete('/:threadId', protect, controller.deleteThread)
+  .put('/like/:id', protect, controller.likeThread)
+  .put('/unlike/:id', protect, controller.unlikeThread)
 
 export default router
