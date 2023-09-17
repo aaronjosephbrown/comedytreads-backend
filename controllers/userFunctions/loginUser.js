@@ -26,6 +26,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
     return res.status(200).json({
       username: user.username,
+      id: user._id,
       avatar: avatarUrl,
       token: generateToken(user._id),
     })
