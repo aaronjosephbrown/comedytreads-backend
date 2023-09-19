@@ -4,6 +4,7 @@ import loginUser from './userFunctions/loginUser.js'
 import updateAvatar from './userFunctions/updateAvatar.js'
 import deleteUser from './userFunctions/deleteUser.js'
 import getAllUsers from './userFunctions/getAllUsers.js'
+import getUserByUsername from './userFunctions/getUserByUsername.js'
 
 const controller = {
   registerUser,
@@ -12,6 +13,7 @@ const controller = {
   getAllUsers,
   deleteUser,
   updateAvatar,
+  getUserByUsername,
 }
 
 export default controller
