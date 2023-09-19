@@ -26,7 +26,7 @@ const getThreadsByAllUsers = ( _, res) => {
         avatar: avatarUrl,
         createdAt: thread.createdAt,
         likedBy: thread.likedBy,
-        likeCount: thread.likeCount,
+        likesCount: thread.likesCount,
       }
     })
     Promise.all(promises).then((results) => {

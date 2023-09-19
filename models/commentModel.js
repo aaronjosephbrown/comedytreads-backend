@@ -17,7 +17,7 @@ const commentSchema = mongoose.Schema(
       required: [true, 'Please enter your comment'],
     },
 
-    likes: {
+    likesCount: {
       type: Number,
       default: 0,
     },

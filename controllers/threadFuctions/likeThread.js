@@ -1,12 +1,15 @@
 import Thread from '../../models/threadModel.js'
+import  getThreadsByAllUsers from './getThreadsByAllUsers.js'
 
-const likeThread = async (req, res) => {
+const likeThread = async (req, res, next) => {
   const { id } = req.params
 
   try {
-    const thread = await Thread.findById(id);
+    const thread = await Thread.findById(id)
     if (thread.likedBy.includes(req.user._id)) {
-      return res.status(400).json({ message: "You have already liked this thread" });
+      return res
+        .status(400)
+        .json({ message: 'You have already liked this thread' })
     }
 
     const updatedThread = await Thread.findByIdAndUpdate(
@@ -19,13 +22,11 @@ const likeThread = async (req, res) => {
     )
 
     if (updatedThread) {
-      res.json(updatedThread)
+      next()
     }
-
   } catch (error) {
     res.status(404).json({ message: error.message })
   }
-  
 }
 
-export default likeThread;
+export default likeThread

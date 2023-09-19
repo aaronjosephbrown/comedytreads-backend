@@ -1,8 +1,13 @@
 import Thread from '../../models/threadModel.js'
 
-const unlikeThread = async (req, res) => {
+const unlikeThread = async (req, res, next) => {
   const { id } = req.params
-
+  const thread = await Thread.findById(id)
+  if (!thread.likedBy.includes(req.user._id)) {
+    return res
+      .status(400)
+      .json({ message: 'You have already unliked this thread' })
+  }
   try {
     const thread = await Thread.findByIdAndUpdate(
       { _id: id },
@@ -14,7 +19,7 @@ const unlikeThread = async (req, res) => {
     )
 
     if (thread) {
-      res.json(thread)
+      next()
     }
   } catch (error) {
     res.status(404).json({ message: error.message })
