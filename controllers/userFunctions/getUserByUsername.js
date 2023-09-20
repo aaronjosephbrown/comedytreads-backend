@@ -10,7 +10,6 @@ const getUserByUsername = async (req, res) => {
     const { s3, buckeName, GetObjectCommand } = s3Bucket
     let avatarUrl = ''
     
-   
     if (user.avatar !== '') {
       avatarUrl = await getSignedUrl(
         s3,
@@ -31,6 +30,7 @@ const getUserByUsername = async (req, res) => {
       avatar: avatarUrl,
       threads: threads,
     })
+    
   } catch (error) {
     console.log(error)
     res.status(500).json({
